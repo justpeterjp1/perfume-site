@@ -7,7 +7,7 @@ module.exports = {
   theme: {
   extend: {
     colors: {
-      primary: "#363636ea",
+      primary: "#363636f4",
       secondary: "#faf8f5",
       accent: "#d4af37",
 
@@ -24,8 +24,8 @@ module.exports = {
       offwhite: "#f7f5f2",
 
       border: "rgba(0, 0, 0, 0.1)",
-      "input-background": "#f3f3f5",
-      "switch-background": "#cbced4",
+      inputBackground: "#f3f3f5",
+      switchBackground: "#cbced4",
     },
 
     fontFamily: {
