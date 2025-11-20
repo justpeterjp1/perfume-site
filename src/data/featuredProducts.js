@@ -34,8 +34,8 @@ const products = [
   },
   {
     id: 4,
-    name: "YSL Libre",
-    brand: "Yves Saint Laurent",
+    name: "Khamrah Lattafa",
+    brand: "Khamrah",
     price: "₦95,000",
     image: "src/assets/Images/perfume-d.jpg",
     description: "A warm floral fragrance for women with bold character.",
@@ -56,8 +56,8 @@ const products = [
   },
   {
     id: 6,
-    name: "Baccarat Rouge 540",
-    brand: "Maison Francis Kurkdjian",
+    name: "Creed Aventus",
+    brand: "Creed",
     price: "₦420,000",
     image: "src/assets/Images/perfume-f.jpg",
     description: "A luxurious woody-amber scent with a radiant signature.",

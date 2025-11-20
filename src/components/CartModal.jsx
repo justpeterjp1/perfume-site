@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, ShoppingBag, Minus, Plus, Trash2 } from 'lucide-react';
 
 
-export function CartModal({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }) {
+export function CartModal({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, }) {
+    const [cartTotal, setCartTotal] = useState('0')
+
+    
+    
   if (!isOpen) return null;
 
   return (

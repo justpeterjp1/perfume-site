@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { CartModal } from './components/CartModal';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import { FragranceQuiz } from './components/FragranceQuiz';
 import NewsLetter from './components/NewsLetter';
 import { Toast } from './components/Toast';
 import Footer from './components/Footer';
@@ -23,6 +24,7 @@ function App() {
 
 
    const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+   
   // Opening individual project modal
    const handleCardClick = (product) => {
     setSelectedProduct(product);
@@ -92,6 +94,7 @@ function App() {
            featuredProducts={featuredProducts}
             onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
+             onOpenQuiz={() => setIsQuizOpen(true)}
           />
         )
     }
@@ -102,6 +105,7 @@ function App() {
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
          isMenuOpen={isMenuOpen}
          cartCount={cartCount}
+         
          onCartClick={() => setIsCartOpen(true)}
          />
          
@@ -119,8 +123,17 @@ function App() {
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
+        
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
+      />
+      {/* Fragrance Quiz */}
+      <FragranceQuiz
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+        featuredProducts={featuredProducts}
+        onCardClick={handleCardClick}
+        onQuickAdd={handleQuickAdd}
       />
       {/* Toast Notification */}
       <Toast

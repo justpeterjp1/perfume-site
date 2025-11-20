@@ -3,7 +3,7 @@ import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
 
 
-export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
+export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz }) {
 
     return (
         <div>
@@ -36,7 +36,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
               Not sure which fragrance suits you best? Take our quick 5-question quiz and discover personalized recommendations tailored to your unique style and preferences.
             </p>
             <button 
-            //   onClick={onOpenQuiz}
+              onClick={onOpenQuiz}
               className="bg-accent text-white hover:bg-copper px-8 py-4 rounded-full transition-colors text-lg"
             >
               Take the Fragrance Quiz
