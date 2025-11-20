@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css';
 import Header from './components/Header';
-import { CartModal } from './components/CartModal';
+import CartModal  from './components/CartModal';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import { FragranceQuiz } from './components/FragranceQuiz';
