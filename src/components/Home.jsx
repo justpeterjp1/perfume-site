@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
-import featuredProducts from '../data/featuredProducts';
+
 
 export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
 
@@ -58,7 +58,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
               <div className=" men absolute inset-0 bg-primary group-hover:scale-105 transition-transform duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h3 className="text-gray-900 mb-4 font-semibold">Men's Collection</h3>
+                  <h3 className="text-gray-900 mb-4 font-semibold text-xl">Men's Collection</h3>
                   <p className="text-gray-900 mb-6">Bold & Distinguished</p>
                   <button className="bg-accent hover:bg-copper text-white px-6 py-2 rounded-full transition-colors">
                     Explore Men's
@@ -75,7 +75,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
               <div className="women absolute inset-0 bg-rosegold group-hover:scale-105 transition-transform duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h3 className="text-white mb-4 font-semibold">Women's Collection</h3>
+                  <h3 className="text-white mb-4 font-semibold text-xl">Women's Collection</h3>
                   <p className="text-white/80 mb-6">Elegant & Timeless</p>
                   <button className="bg-accent hover:bg-copper text-white px-6 py-2 rounded-full transition-colors">
                     Explore Women's
@@ -87,7 +87,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd }) {
         </div>
       </section>
            {/* Other Products Showcase */}
-      <section className="bg-[--color-off-white] container mx-auto px-4 py-16">
+      <section className="bg-[--color-off-white] container mx-auto px-4 py-16 border-b">
         <h2 className="text-center mb-12 font-bold">Explore More</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {[

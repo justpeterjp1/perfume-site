@@ -12,7 +12,7 @@ export default function ProductCard({ product, onCardClick, onQuickAdd }) {
       onMouseLeave={() => setIsHovered(false)}
     >
         {/* Image Container */}
-         <div className="relative aspect-square bg-white overflow-hidden" onClick={onCardClick}>
+         <div className="relative aspect-square bg-white overflow-hidden" onClick={onCardClick(product)}>
         <img
           src={product.image}
           alt={product.name}
@@ -26,7 +26,7 @@ export default function ProductCard({ product, onCardClick, onQuickAdd }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onQuickAdd();
+              onQuickAdd(product.id);
             }}
             className="w-full bg-[#D4AF37] text-white py-2 rounded-full flex items-center justify-center gap-2 uppercase tracking-wider hover:bg-[#C5A028] transition-colors"
           >
@@ -39,7 +39,7 @@ export default function ProductCard({ product, onCardClick, onQuickAdd }) {
         <div className="p-4" onClick={onCardClick}>
             <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">{product.brand}</p>
             <h3 className="text-[#2C2C2C] mb-2 line-clamp-1">{product.name}</h3>
-            <p className="text-[#D4AF37]">${product.price}</p>
+            <p className="text-[#D4AF37]">{product.price}</p>
         </div>
     </div>
     )

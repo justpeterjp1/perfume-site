@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Menu, X, Search, ShoppingCart } from 'lucide-react';
 import logo from '../assets/perfume-logo.jpg'
 
-export default function Header ({isMenuOpen, toggleMenu}) {
+export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}) {
     const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-inputBackground">
@@ -48,15 +48,15 @@ export default function Header ({isMenuOpen, toggleMenu}) {
 
           {/* Cart Icon */}
           <button 
-            // onClick={onCartClick}
+            onClick={onCartClick}
             className="relative p-2 hover:bg-[--color-light-gray] rounded-lg transition-colors"
           >
             <ShoppingCart size={24} />
-            {/* {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[--color-gold] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-foreground text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {cartCount}
               </span>
-            )} */}
+            )}
           </button>
         </div>
         </div>
