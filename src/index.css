@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* In your CSS */
+html {
+  scroll-padding-top: 100px; /* Adjust based on header height */
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.men {
+  background: url(/src/assets/Images/perfume-men.jpg) center / cover no-repeat;
+}
+
+.women {
+  background: url(/src/assets/Images/perfume-1.jpg) center / cover no-repeat;
+}
+

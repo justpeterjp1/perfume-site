@@ -14,7 +14,7 @@ export default function Header ({isMenuOpen, toggleMenu}) {
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-         {/* Logo */}
+        
         <button 
         // onClick={onLogoClick} 
         className="flex-shrink-0 focus:outline-none">
