@@ -10,7 +10,7 @@ export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}
             {/* Mobile Menu Toggle */}
         <button 
         onClick={toggleMenu}
-          className="lg:hidden p-2 hover:bg-[--color-light-gray] rounded-lg transition-colors"
+          className="lg:hidden p-2 hover:bg-muted rounded-lg transition-colors"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -31,7 +31,7 @@ export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}
             <input
               type="text"
               placeholder="Search for perfumes, brands..."
-              className="w-full pl-10 pr-4 py-2 bg-white border border-[--color-light-gray] rounded-full focus:outline-none focus:border-[--color-gold] transition-colors"
+              className="w-full pl-10 pr-4 py-2 bg-white border border-[--color-light-gray] rounded-full focus:outline-none focus:border-foreground transition-colors"
             />
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}
           {/* Mobile Search Toggle */}
           <button 
             onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-            className="md:hidden p-2 hover:bg-[--color-light-gray] rounded-lg transition-colors"
+            className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
           >
             <Search size={24} />
           </button>
@@ -49,7 +49,7 @@ export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}
           {/* Cart Icon */}
           <button 
             onClick={onCartClick}
-            className="relative p-2 hover:bg-[--color-light-gray] rounded-lg transition-colors"
+            className="relative p-2 hover:bg-muted rounded-lg transition-colors"
           >
             <ShoppingCart size={24} />
             {cartCount > 0 && (
@@ -62,13 +62,13 @@ export default function Header ({isMenuOpen, toggleMenu, cartCount, onCartClick}
         </div>
         {/* Mobile Search Expanded */}
         {isSearchExpanded && (
-            <div className="md:hidden px-4 pb-4">
-            <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[--color-charcoal] opacity-50" size={20} />
+            <div className="md:hidden px-4 pb-4 ">
+            <div className="relative ">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[--color-charcoal]  opacity-50" size={20} />
                 <input
                 type="text"
                 placeholder="Search for perfumes, brands..."
-                className="w-full pl-10 pr-4 py-2 bg-white border rounded-full focus:outline-none focus:border-[--color-gold] transition-colors"
+                className="w-full pl-10 pr-4 py-2 bg-white border rounded-full focus:outline-none focus:border-foreground transition-colors"
                 autoFocus
                 />
             </div>

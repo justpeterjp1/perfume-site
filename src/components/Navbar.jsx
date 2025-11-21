@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 
-export default function Navbar({ isOpen, onClose }) {
+export default function Navbar({ isOpen, onClose,  setCurrentSection }) {
   const [showEssentials, setShowEssentials] = useState(false);
   
 
@@ -33,6 +33,27 @@ export default function Navbar({ isOpen, onClose }) {
     }
   };
 
+  const home = () => {
+    setCurrentSection("home")
+    handleLinkClick()
+  }
+  const brand = () => {
+    setCurrentSection("shop")
+    handleLinkClick()
+  }
+  const male = () => {
+    setCurrentSection("shop")
+    handleLinkClick()
+  }
+  const female = () => {
+    setCurrentSection("shop")
+    handleLinkClick()
+  }
+  const essential = () => {
+    setCurrentSection("shop")
+    handleLinkClick()
+  }
+
   return (
     
     <header 
@@ -42,10 +63,10 @@ export default function Navbar({ isOpen, onClose }) {
       <div className="flex items-center justify-center p-0 md:px-6 md:py-4">
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-10 text-primary">
-          <a className="hover:text-accent transition">Home</a>
-          <a className="hover:text-accent transition">Shop by Brand</a>
-          <a className="hover:text-accent transition">Male Section</a>
-          <a className="hover:text-accent transition">Female Section</a>
+          <a onClick={home} className="hover:text-accent transition">Home</a>
+          <a onClick={brand} className="hover:text-accent transition">Shop by Brand</a>
+          <a onClick={male} className="hover:text-accent transition">Male Section</a>
+          <a onClick={female} className="hover:text-accent transition">Female Section</a>
 
           <div className="relative group">
             <button className="hover:text-accent transition">Body Essentials</button>
@@ -78,25 +99,25 @@ export default function Navbar({ isOpen, onClose }) {
         <nav className="md:hidden flex flex-col gap-1 px-4 py-4 bg-secondary border-t border-muted">
           {/* 6. Add onClick={handleLinkClick} to ALL mobile links */}
           <a 
-            onClick={handleLinkClick}
+            onClick={home}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Home
           </a>
           <a 
-            onClick={handleLinkClick}
+            onClick={brand}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Shop by Brand
           </a>
           <a 
-            onClick={handleLinkClick}
+            onClick={male}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Male Section
           </a>
           <a 
-            onClick={handleLinkClick}
+            onClick={female}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Female Section

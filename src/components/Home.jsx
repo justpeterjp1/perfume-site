@@ -101,7 +101,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
             <button
               key={category.value}
             //   onClick={() => onNavigate(category.value)}
-              className="p-6 bg-white border border-gray-300 rounded-lg hover:border-accent hover:shadow-lg transition-all text-center"
+              className="p-6 bg-white border border-gray-300 rounded-lg hover:border-foreground hover:shadow-lg transition-all text-center"
             >
               <div className="text-3xl mb-2">
                 {category.value === "perfume-oils" && "💧"}

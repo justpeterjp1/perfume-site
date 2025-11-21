@@ -161,9 +161,9 @@ export function FragranceQuiz({ isOpen, onClose, featuredProducts, onCardClick, 
                 <span>Question {currentStep + 1} of {quizQuestions.length}</span>
                 <span>{Math.round(progress)}%</span>
               </div>
-              <div className="h-2 bg-[--color-light-gray] rounded-full overflow-hidden">
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-[--color-gold] transition-all duration-300"
+                  className="h-full bg-foreground transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -178,7 +178,7 @@ export function FragranceQuiz({ isOpen, onClose, featuredProducts, onCardClick, 
                   <button
                     key={option.value}
                     onClick={() => handleAnswer(option.value)}
-                    className={`p-6 border-2 rounded-lg text-left transition-all hover:border-[--color-gold] hover:shadow-lg ${
+                    className={`p-6 border  rounded-lg text-left transition-all hover:border-accent hover:shadow-lg ${
                       answers.find(a => a.question === currentStep)?.answer === option.value
                         ? 'border-[--color-gold] bg-[--color-gold] bg-opacity-10'
                         : 'border-[--color-light-gray]'

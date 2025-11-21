@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import './App.css';
 import Header from './components/Header';
-import CartModal  from './components/CartModal';
+import CartModal from './components/CartModal';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Brands from './components/ShopByBrand';
 import { FragranceQuiz } from './components/FragranceQuiz';
 import NewsLetter from './components/NewsLetter';
 import { Toast } from './components/Toast';
@@ -17,27 +18,27 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
-   const [cartItems, setCartItems] = useState([])
-   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([])
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("")
 
 
-   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-   
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   // Opening individual project modal
-   const handleCardClick = (product) => {
+  const handleCardClick = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
   // Adding to cart
-     const handleAddToCart = (productId, size) => {
+  const handleAddToCart = (productId, size) => {
     const product = featuredProducts.find(p => p.id === productId);
     if (!product) return;
 
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === productId && item.size === size);
-      
+
       if (existingItem) {
         return prevItems.map(item =>
           item.id === productId && item.size === size
@@ -61,14 +62,14 @@ function App() {
     setShowToast(true);
   };
 
-   const handleQuickAdd = (productId) => {
-     const product = featuredProducts.find(p => p.id === productId);
-     if (!product) return;
-     
-     handleAddToCart(productId, product.sizes[0]);
-    };
-    
-  
+  const handleQuickAdd = (productId) => {
+    const product = featuredProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    handleAddToCart(productId, product.sizes[0]);
+  };
+
+
   const handleUpdateQuantity = (itemId, newQuantity) => {
     if (newQuantity === 0) {
       handleRemoveItem(itemId);
@@ -91,39 +92,49 @@ function App() {
       case 'home':
         return (
           <Home
-           featuredProducts={featuredProducts}
+            featuredProducts={featuredProducts}
             onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
-             onOpenQuiz={() => setIsQuizOpen(true)}
+            onOpenQuiz={() => setIsQuizOpen(true)}
           />
         )
+      case "shop":
+        return (
+          <Brands
+            onCardClick={handleCardClick}
+            onQuickAdd={handleQuickAdd}
+          />
+        );
+
+      default:
+        return <Home />;
     }
   }
   return (
     <>
-        <Header
+      <Header
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
-         isMenuOpen={isMenuOpen}
-         cartCount={cartCount}
-         
-         onCartClick={() => setIsCartOpen(true)}
-         />
-         
-        <Navbar
+        isMenuOpen={isMenuOpen}
+        cartCount={cartCount}
+        onCartClick={() => setIsCartOpen(true)}
+      />
+
+      <Navbar
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(!isMenuOpen)}
-         />
+        setCurrentSection={setCurrentSection}
+      />
       <main>
         {renderSection()}
       </main>
-        <NewsLetter />
-        <Footer />
-        {/* Cart Drawer */}
+      <NewsLetter />
+      <Footer />
+      {/* Cart Drawer */}
       <CartModal
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
-        
+
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
       />
