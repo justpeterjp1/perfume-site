@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { ESSENTIAL_CATEGORIES } from '../data/essentialsData.js'
 
-
-export default function Navbar({ isOpen, onClose,  setCurrentSection }) {
+export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSection}) {
   const [showEssentials, setShowEssentials] = useState(false);
   
 
@@ -42,17 +42,29 @@ export default function Navbar({ isOpen, onClose,  setCurrentSection }) {
     handleLinkClick()
   }
   const male = () => {
-    setCurrentSection("shop")
+    setCurrentSection("male")
     handleLinkClick()
   }
   const female = () => {
-    setCurrentSection("shop")
+    setCurrentSection("female")
     handleLinkClick()
   }
-  const essential = () => {
-    setCurrentSection("shop")
-    handleLinkClick()
-  }
+  // ... existing handlers ...
+
+// This function now takes an optional categoryId for deep linking/scrolling
+const essential = (categoryId) => {
+    // 1. Always set the main section to 'essentials' first
+    setCurrentSection("essentials");
+
+    handleLinkClick(); 
+    //    (Delay ensures the main component has time to render)
+    if (categoryId && scrollToSection) {
+      
+        setTimeout(() => {
+            scrollToSection(categoryId);
+        }, 100); 
+    }
+}
 
   return (
     
@@ -69,26 +81,17 @@ export default function Navbar({ isOpen, onClose,  setCurrentSection }) {
           <a onClick={female} className="hover:text-accent transition">Female Section</a>
 
           <div className="relative group">
-            <button className="hover:text-accent transition">Body Essentials</button>
+            <button  className="hover:text-accent transition">Body Essentials</button>
             <div className="absolute hidden group-hover:flex flex-col top-full left-0 mt-2 bg-secondary shadow-lg rounded-lg p-4 gap-2 w-56 z-50">
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                💧 Perfume Oils
-              </a>
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                🕯️ Diffusers
-              </a>
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                ✨ Body Sprays
-              </a>
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                🧼 Luxury Soaps
-              </a>
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                🕯️ Scented Candles
-              </a>
-              <a className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap">
-                🎁 Gift Sets
-              </a>
+              {ESSENTIAL_CATEGORIES.map(category => (
+                    <a 
+                        key={category.id}
+                        onClick={() => essential(category.id)} // ⬅️ Triggers section change AND scroll
+                        className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap"
+                    >
+                        {category.icon} {category.name}
+                    </a>
+                ))}
             </div>
           </div>
         </nav>
@@ -148,24 +151,15 @@ export default function Navbar({ isOpen, onClose,  setCurrentSection }) {
             >
               <div className="flex flex-col gap-1 mt-2 ml-4 pl-4 border-l-2 border-gold/30">
                 {/* Add handleLinkClick to sub-menu items as well */}
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  💧 Perfume Oils
-                </a>
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  🕯️ Diffusers
-                </a>
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  ✨ Body Sprays
-                </a>
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  🧼 Luxury Soaps
-                </a>
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  🕯️ Scented Candles
-                </a>
-                <a onClick={handleLinkClick} className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap">
-                  🎁 Gift Sets
-                </a>
+               {ESSENTIAL_CATEGORIES.map(category => (
+                    <a 
+                        key={category.id}
+                        onClick={() => essential(category.id)} // ⬅️ Triggers section change, scroll, and closes menu
+                        className="cursor-pointer py-2.5 px-3 text-sm text-primary/80 hover:text-accent hover:bg-cream/50 rounded-md transition-all duration-200 whitespace-nowrap"
+                    >
+                        {category.icon} {category.name}
+                    </a>
+                ))}
               </div>
             </div>
           </div>

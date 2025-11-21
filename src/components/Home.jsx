@@ -3,7 +3,7 @@ import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
 
 
-export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz }) {
+export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate }) {
 
     return (
         <div>
@@ -52,7 +52,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
           <div className="grid md:grid-cols-2 gap-8">
             {/* Male Section */}
             <div 
-            //   onClick={() => onNavigate("male")}
+              onClick={() => onNavigate("male")}
               className="relative h-80 rounded-lg overflow-hidden group cursor-pointer"
             >
               <div className=" men absolute inset-0 bg-primary group-hover:scale-105 transition-transform duration-300"></div>
@@ -69,7 +69,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
 
             {/* Female Section */}
             <div 
-            //   onClick={() => onNavigate("female")}
+              onClick={() => onNavigate("female")}
               className="relative h-80 rounded-lg overflow-hidden group cursor-pointer"
             >
               <div className="women absolute inset-0 bg-rosegold group-hover:scale-105 transition-transform duration-300"></div>

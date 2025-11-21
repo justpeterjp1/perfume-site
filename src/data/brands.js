@@ -1,19 +1,124 @@
 const BRANDS = [
-  { name: "Dior", slug: "dior", image: "/images/brands/dior.jpg" },
-  { name: "Chanel", slug: "chanel", image: "/images/brands/chanel.jpg" },
-  { name: "YSL", slug: "ysl", image: "/images/brands/ysl.jpg" },
-  { name: "Giorgio Armani", slug: "armani", image: "/images/brands/armani.jpg" },
-  { name: "Versace", slug: "versace", image: "/images/brands/versace.jpg" },
-  { name: "Gucci", slug: "gucci", image: "/images/brands/gucci.jpg" },
-//   { name: "Tom Ford", slug: "tom-ford", image: "/images/brands/tomford.jpg" },
-//   { name: "Paco Rabanne", slug: "paco", image: "/images/brands/paco.jpg" },
-//   { name: "Calvin Klein", slug: "ck", image: "/images/brands/ck.jpg" },
-//   { name: "Burberry", slug: "burberry", image: "/images/brands/burberry.jpg" },
-//   { name: "Armaf", slug: "armaf", image: "/images/brands/armaf.jpg" },
-//   { name: "Zara", slug: "zara", image: "/images/brands/zara.jpg" },
-//   { name: "Lattafa", slug: "lattafa", image: "/images/brands/lattafa.jpg" },
-//   { name: "Initio", slug: "initio", image: "/images/brands/initio.jpg" },
-//   { name: "Maison Francis Kurkdjian", slug: "mfk", image: "/images/brands/mfk.jpg" },
+  { 
+    name: "Dior", 
+    slug: "dior", 
+    image: "src/assets/Images/dior1.jpg",
+    description: "The epitome of timeless French elegance and luxury perfumes.",
+    productCount: 25 
+  },
+  { 
+    name: "Oud", 
+    slug: "Oud", 
+    image: "src/assets/Images/lattafa1.jpg", // Assuming placeholder image
+    description: "A selection of rich, complex fragrances built around the noble Oud note.",
+    productCount: 18 
+  },
+  { 
+    name: "Asad", 
+    slug: "Asad", 
+    image: "src/assets/Images/lattafa2.jpg", // Assuming placeholder image
+    description: "Bold, masculine scents known for their intense sillage and longevity.",
+    productCount: 12 
+  },
+  { 
+    name: "Chanel", 
+    slug: "chanel", 
+    image: "src/assets/Images/chanel2.jpg",
+    description: "Classic and sophisticated scents that define modern femininity and style.",
+    productCount: 35 
+  },
+  { 
+    name: "YSL", 
+    slug: "ysl", 
+    image: "src/assets/Images/9pm-1.jpg",
+    description: "Daring and provocative perfumes that blend traditional florals with modern intensity.",
+    productCount: 20 
+  },
+  { 
+    name: "Giorgio Armani", 
+    slug: "armani", 
+    image: "src/assets/Images/armani1.jpg",
+    description: "Elegant, minimalist, and beautifully crafted Italian fragrances.",
+    productCount: 15 
+  },
+  { 
+    name: "Versace", 
+    slug: "versace", 
+    image: "src/assets/Images/versace1.jpg",
+    description: "Loud, vibrant, and luxurious perfumes inspired by Greek mythology and excess.",
+    productCount: 10 
+  },
+  { 
+    name: "Gucci", 
+    slug: "gucci", 
+    image: "src/assets/Images/gucci1.jpg",
+    description: "Eclectic and contemporary fragrances that reflect the brand's unique aesthetic.",
+    productCount: 14 
+  },
+  { 
+    name: "Tom Ford", 
+    slug: "tom-ford", 
+    image: "src/assets/Images/tom-ford1.jpg",
+    description: "Decadent, signature scents known for their rich, unconventional blends.",
+    productCount: 28 
+  },
+  { 
+    name: "Paco Rabanne", 
+    slug: "paco", 
+    image: "src/assets/Images/paco-rabanne1.jpg",
+    description: "Futuristic and bold scents, including popular long-lasting bestsellers.",
+    productCount: 17 
+  },
+  { 
+    name: "Calvin Klein", 
+    slug: "ck", 
+    image: "src/assets/Images/calvin-klein1.jpg",
+    description: "Clean, accessible, and modern fragrances, especially known for unisex scents.",
+    productCount: 19 
+  },
+  { 
+    name: "Burberry", 
+    slug: "burberry", 
+    image: "src/assets/Images/burberry1.jpg",
+    description: "Traditional British luxury captured in timeless, sophisticated aromas.",
+    productCount: 11 
+  },
+  { 
+    name: "Armaf", 
+    slug: "armaf", 
+    image: "src/assets/Images/9pm-1.jpg",
+    description: "Affordable luxury fragrances, often providing excellent alternatives to designer scents.",
+    productCount: 40 
+  },
+  { 
+    name: "Zara", 
+    slug: "zara", 
+    image: "src/assets/Images/creed3.jpg",
+    description: "Trendy and budget-friendly scents that reflect current fashion notes.",
+    productCount: 22 
+  },
+  { 
+    name: "Lattafa", 
+    slug: "lattafa", 
+    image: "src/assets/Images/lattafa1.jpg",
+    description: "High-quality Arabian perfumes featuring deep, complex, and luxurious blends.",
+    productCount: 30 
+  },
+  { 
+    name: "Initio", 
+    slug: "initio", 
+    image: "src/assets/Images/louis-v1.jpg",
+    description: "Focused on the power of scent and its therapeutic, sensory effects.",
+    productCount: 9 
+  },
+  { 
+    name: "Maison Francis Kurkdjian", 
+    slug: "mfk", 
+    image: "src/assets/Images/9pm-1.jpg",
+    description: "Haute perfumery known for its clean, pure, and luminous scent structures.",
+    productCount: 16 
+  },
 ];
+
 
 export default BRANDS;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css';
 import Header from './components/Header';
 import CartModal from './components/CartModal';
@@ -8,11 +8,26 @@ import Brands from './components/ShopByBrand';
 import { FragranceQuiz } from './components/FragranceQuiz';
 import NewsLetter from './components/NewsLetter';
 import { Toast } from './components/Toast';
+import MaleSection from './components/MaleSection';
+import FemaleSection from './components/FemaleSection';
+import Essentials from './components/Essentials';
 import Footer from './components/Footer';
 
 import featuredProducts from './data/featuredProducts'
 
 function App() {
+
+  const essentialSectionRefs = useRef({}); 
+  const scrollToSection = (id) => {
+    const element = essentialSectionRefs.current[id];
+    
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      console.warn(`Attempted to scroll to section '${id}', but ref not found.`);
+    }
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('home')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -87,6 +102,12 @@ function App() {
     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
+   const handleNavigate = (section) => {
+    setCurrentSection(section);
+    setIsMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const renderSection = () => {
     switch (currentSection) {
       case 'home':
@@ -94,6 +115,7 @@ function App() {
           <Home
             featuredProducts={featuredProducts}
             onCardClick={handleCardClick}
+            onNavigate={handleNavigate}
             onQuickAdd={handleQuickAdd}
             onOpenQuiz={() => setIsQuizOpen(true)}
           />
@@ -105,6 +127,27 @@ function App() {
             onQuickAdd={handleQuickAdd}
           />
         );
+      case "male":
+        return (
+          <MaleSection
+          onCardClick={handleCardClick}
+            onQuickAdd={handleQuickAdd}
+          />
+        )
+      case "female":
+        return (
+          <FemaleSection
+          onCardClick={handleCardClick}
+            onQuickAdd={handleQuickAdd}
+          />
+        )
+      case "essentials":
+        return (
+          <Essentials 
+          onCardClick={handleCardClick}
+            onQuickAdd={handleQuickAdd}
+          />
+        )
 
       default:
         return <Home />;
@@ -123,6 +166,7 @@ function App() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(!isMenuOpen)}
         setCurrentSection={setCurrentSection}
+        scrollToSection={scrollToSection}
       />
       <main>
         {renderSection()}
