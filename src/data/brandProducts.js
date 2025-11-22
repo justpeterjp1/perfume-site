@@ -19,7 +19,7 @@ const brandProducts = {
       image: "/images/products/homme-intense.jpg",
       description: "Iris, woody, elegant.",
       sizes: ["50ml"],
-      notes: ["Iris", "Cedar"],
+      notes: ["Iris", "woody", "Cedar"],
       category: "male",
     },
   ],

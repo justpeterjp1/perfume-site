@@ -39,7 +39,7 @@ const products = [
     price: "₦95,000",
     image: "src/assets/Images/perfume-d.jpg",
     description: "A warm floral fragrance for women with bold character.",
-    notes: ["Lavender", "Orange Blossom", "Musk"],
+    notes: ["Lavender", "fruity", "Musk"],
     sizes: ["50ml", "90ml"],
     category: "female"
   },
@@ -50,7 +50,7 @@ const products = [
     price: "₦98,000",
    image: "src/assets/Images/9pm-1.jpg",
     description: "A sensual and modern feminine scent.",
-    notes: ["Cocoa", "Tuberose", "Tonka Bean"],
+    notes: ["Chypre", "fruity", "Tonka Bean"],
     sizes: ["50ml",  "80ml"],
     category: "female"
   },
@@ -61,7 +61,7 @@ const products = [
     price: "₦420,000",
     image: "src/assets/Images/perfume-f.jpg",
     description: "A luxurious woody-amber scent with a radiant signature.",
-    notes: ["Ambergris", "Cedar", "Saffron"],
+    notes: ["Ambergris", "gourmand", "Saffron"],
     sizes: ["70ml"],
     category: "unisex"
   },
@@ -72,7 +72,7 @@ const products = [
     price: "₦250,000",
     image: "src/assets/Images/perfume-i.jpg",
     description: "Rare oud blended with spices and woods for a rich aroma.",
-    notes: ["Oud", "Cardamom", "Sandalwood"],
+    notes: ["powdery", "Cardamom", "Sandalwood"],
     sizes: ["50ml", "100ml"],
     category: "unisex"
   },
@@ -83,7 +83,7 @@ const products = [
     price: "₦89,000",
     image: "src/assets/Images/armani1.jpg",
     description: "A sweet modern chypre fragrance for women.",
-    notes: ["Vanilla", "Blackcurrant", "Rose"],
+    notes: ["Vanilla", "fruity", "Rose"],
     sizes: ["50ml", "100ml"],
     category: "female"
   },
@@ -127,9 +127,9 @@ const products = [
     price: "₦6,500",
     image: "src/assets/Images/gucci1.jpg",
     description: "A long-lasting oud body spray for daily wear.",
-    notes: ["Oud", "Spices", "Woody"],
+    notes: ["Oud", "Spicy", "Woody"],
     sizes: ["250ml"],
-    category: "sprays"
+    category: "male"
   },
   {
     id: 13,
@@ -144,14 +144,14 @@ const products = [
   },
   {
     id: 14,
-    name: "Perfume Oil – Musk Tahara",
-    brand: "Swiss Arabian",
+    name: "Calvin Klein Eternity",
+    brand: "Calvin klein",
     price: "₦8,000",
     image: "src/assets/Images/lattafa1.jpg",
     description: "A clean, soft musk perfume oil.",
-    notes: ["White Musk"],
+    notes: ["White Musk", "aquatic"],
     sizes: ["6ml", "12ml"],
-    category: "perfume-oils"
+    category: "male"
   },
   {
     id: 15,
@@ -182,9 +182,9 @@ const products = [
     price: "₦45,000",
     image: "src/assets/Images/set1.jpg",
     description: "A curated feminine fragrance gift set.",
-    notes: ["Rose", "Jasmine", "Vanilla"],
+    notes: ["Rose", "floral", "Vanilla"],
     sizes: ["30ml x 3"],
-    category: "gift-sets"
+    category: "female"
   },
   {
     id: 18,
@@ -193,9 +193,9 @@ const products = [
     price: "₦60,000",
     image: "src/assets/Images/lattafa1.jpg",
     description: "A premium oud-themed gift set for men.",
-    notes: ["Oud", "Leather", "Cedar"],
+    notes: ["Oud", "Leather", "Cedar", "spicy"],
     sizes: ["50ml + Oil + Soap"],
-    category: "gift-sets"
+    category:  "unisex"
   },
   {
     id: 19,
@@ -211,11 +211,11 @@ const products = [
   {
     id: 20,
     name: "1 million",
-    brand: "Paco rabbane",
+    brand: "Paco rabanne",
     price: "₦1,000,000",
-    image: "src/assets/Images/givenchy1.jpg",
+    image: "src/assets/Images/paco-rabbane3.jpg",
     description: "Fresh aquatic fragrance inspired by the ocean.",
-    notes: ["Mint", "Sea Water", "Lavender"],
+    notes: ["Mint", "Sea Water", "Lavender", "musk"],
     sizes: ["50ml", "100ml"],
     category: "male"
   },
@@ -227,7 +227,7 @@ const products = [
       image: "src/assets/Images/club-de-nuit1.jpg",
       description: "Smoky pineapple.",
       sizes: ["105ml"],
-      notes: ["Pineapple"],
+      notes: ["Pineapple", "Woody"],
       category: "male",
     },
     {
@@ -271,7 +271,7 @@ const products = [
       image: "/src/assets/Images/gucci3.jpg",
       description: "Spicy vanilla beast mode.",
       sizes: ["100ml"],
-      notes: ["Vanilla"],
+      notes: ["Vanilla", "musk"],
       category: "male",
     },
     {
@@ -282,7 +282,7 @@ const products = [
       image: "/src/assets/Images/gucci4.jpg",
       description: "Powdery fresh unisex.",
       sizes: ["60ml"],
-      notes: ["Amber"],
+      notes: ["Amber", "powdery"],
       category: "unisex",
     },
     {
@@ -293,7 +293,7 @@ const products = [
       image: "src/assets/Images/tom-ford1.jpg",
       description: "Dark oud and spice.",
       sizes: ["90ml"],
-      notes: ["Oud", "Saffron"],
+      notes: ["Oud", "gourmand", "Woody"],
       category: "unisex",
     },
     {
@@ -304,18 +304,18 @@ const products = [
       image: "src/assets/Images/tom-ford3.jpg",
       description: "Clean woody comfort.",
       sizes: ["90ml"],
-      notes: ["Lavender", "Cedar"],
+      notes: ["Lavender", "Chypre"],
       category: "unisex",
     },
      {
       id: 29,
-      name: "Tom Ford Tobacco vannila",
+      name: "Tom Ford Tobacco vanilla",
       brand: "tom ford",
       price: "₦180,000",
       image: "src/assets/Images/tom-ford4.jpg",
       description: "Sweet, airy, luxurious.",
       sizes: ["70ml"],
-      notes: ["Saffron", "Ambergris"],
+      notes: ["citrus", "vanilla"],
       category: "unisex",
     },
     {
