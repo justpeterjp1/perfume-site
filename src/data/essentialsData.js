@@ -1,88 +1,175 @@
-// essentialdata.js
+// essentialsData.js
 
-// --- Helper function to create specialized mock products ---
-const createProduct = (id, category, name, specField, specValue) => ({
-    id: `${category.id}-${id}`,
-    name: name,
-    category: category.name,
-    price: `₦${(Math.floor(Math.random() * (15000 - 3000 + 1)) + 3000).toLocaleString('en-US')}`, // Random price between ₦3,000 and ₦15,000
-    image: `src/assets/Images/essentials/${category.id}-${id}.jpg`, // Mock image path
-    description: `A highly-concentrated, essential ${category.name.toLowerCase()} item for superior ambiance and lasting fragrance.`,
-    [specField]: specValue, // Specialized field
-});
-
-
-// --- Core Category Definitions ---
+// ---------------------------------------------
+// 1. Category Definitions (for Navbar & Grouping)
+// ---------------------------------------------
 export const ESSENTIAL_CATEGORIES = [
-    { id: 'oils', name: "Perfume Oils", icon: '💧', products: [] },
-    { id: 'diffusers', name: "Diffusers", icon: '🕯️', products: [] },
-    { id: 'sprays', name: "Body Sprays", icon: '✨', products: [] },
-    { id: 'soaps', name: "Luxury Soaps", icon: '🧼', products: [] },
-    { id: 'candles', name: "Scented Candles", icon: '🕯️', products: [] },
-    { id: 'gifts', name: "Gift Sets", icon: '🎁', products: [] },
+    { id: "oils", name: "Perfume Oils", icon: "💧" },
+    { id: "diffusers", name: "Diffusers", icon: "🕯️" },
+    { id: "sprays", name: "Body Sprays", icon: "✨" },
+    { id: "soaps", name: "Luxury Soaps", icon: "🧼" },
+    { id: "candles", name: "Scented Candles", icon: "🕯️" },
+    { id: "gifts", name: "Gift Sets", icon: "🎁" },
 ];
 
+// ---------------------------------------------
+// 2. Helper – random price generator (numeric)
+// ---------------------------------------------
+const randomPrice = () =>
+    Math.floor(Math.random() * (15000 - 3000 + 1)) + 3000; // numeric value
 
-// --- Populate 10 Products for each Category ---
+// ---------------------------------------------
+// 3. PERFUME OILS (10)
+// ---------------------------------------------
+const OILS = [
+    "Arabian Musk",
+    "Rose Oud Elixir",
+    "Amber Nightfall",
+    "White Musk Serenity",
+    "Royal Oud Fusion",
+    "Golden Sand Attar",
+    "Vanilla Amber Bloom",
+    "Mystic Oud Essence",
+    "Fresh Linen Musk",
+    "Sandalwood Pure Oil",
+].map((name, i) => ({
+    id: `oils-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "oils",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/oils/${i + 1}.jpg`,
+    description: `${name} is a premium concentrated perfume oil with long-lasting projection.`,
+    volume: i % 2 === 0 ? "10ml" : "15ml",
+}));
 
-// Perfume Oils
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[0].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[0], 
-        `Concentrated Attar No. ${i}`, 
-        'volume', 
-        i % 2 === 0 ? '10ml' : '15ml'
-    ));
-}
+// ---------------------------------------------
+// 4. DIFFUSERS (8)
+// ---------------------------------------------
+const DIFFUSERS = [
+    "Lavender Breeze",
+    "Citrus Wood Fusion",
+    "Midnight Amber Reed",
+    "Vanilla & Cashmere",
+    "Forest Pine Aroma",
+    "Coconut Island",
+    "Fresh Linen Diffuser",
+    "Oud Home Luxury",
+].map((name, i) => ({
+    id: `diffuser-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "diffusers",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/diffusers/${i + 1}.jpg`,
+    description: `A long-lasting home diffuser infused with ${name} fragrance.`,
+    duration: i % 3 === 0 ? "90 Days" : "60 Days",
+}));
 
-// Diffusers
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[1].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[1], 
-        `Reed Diffuser Luxury ${i}`, 
-        'duration', 
-        i % 3 === 0 ? '90 Days' : '60 Days'
-    ));
-}
+// ---------------------------------------------
+// 5. BODY SPRAYS (8)
+// ---------------------------------------------
+const SPRAYS = [
+    "Riggs",
+    "Ocean Fresh Splash",
+    "Cocoa Vanilla Spray",
+    "Cedar Rush",
+    "Storm",
+    "Wild Blossom",
+    "Cotton Cloud",
+    "Warm Sugar Glow",
+].map((name, i) => ({
+    id: `spray-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "sprays",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/sprays/${i + 1}.jpg`,
+    description: `A refreshing body spray perfect for daily wear. Scent: ${name}.`,
+    formula: i % 2 === 0 ? "Non-alcoholic" : "Quick-dry",
+}));
 
-// Body Sprays
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[2].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[2], 
-        `Velvet Body Mist ${i}`, 
-        'formula', 
-        i % 2 === 0 ? 'Non-alcoholic' : 'Quick-dry'
-    ));
-}
+// ---------------------------------------------
+// 6. LUXURY SOAPS (10)
+// ---------------------------------------------
+const SOAPS = [
+    "Shea Butter Luxury Bar",
+    "Oatmeal & Honey Cleanser",
+    "Charcoal Detox Soap",
+    "Coconut Milk Bar",
+    "Vanilla Bean Soap",
+    "Rose Petal Cleanser",
+    "Dudu Osun",
+    "Dove Liquid Soap",
+    "Aloe Pure Hydrating Soap",
+    "Extract Soap",
+].map((name, i) => ({
+    id: `soap-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "soaps",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/soaps/${i + 1}.jpg`,
+    description: `A handcrafted luxury soap enriched with natural oils. Scent: ${name}.`,
+    weight: i % 4 === 0 ? "200g" : "100g",
+}));
 
-// Luxury Soaps
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[3].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[3], 
-        `Triple Milled Soap ${i}`, 
-        'weight', 
-        i % 4 === 0 ? '200g' : '100g'
-    ));
-}
+// ---------------------------------------------
+// 7. CANDLES (8)
+// ---------------------------------------------
+const CANDLES = [
+    "Vanilla Sugar Candle",
+    "Midnight Oud Candle",
+    "Citrus Bloom Candle",
+    "Amber Noir Candle",
+    "Rose Garden Candle",
+    "Sandalwood Glow",
+    "Ocean Breeze Candle",
+    "Golden Musk Candle",
+].map((name, i) => ({
+    id: `candle-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "candles",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/candles/${i + 1}.jpg`,
+    description: `A premium handcrafted scented candle with notes of ${name}.`,
+    burnTime: i % 3 === 0 ? "50 hours" : "30 hours",
+}));
 
-// Scented Candles
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[4].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[4], 
-        `Signature Soy Candle ${i}`, 
-        'burnTime', 
-        i % 3 === 0 ? '50 hours' : '30 hours'
-    ));
-}
+// ---------------------------------------------
+// 8. GIFT SETS (8)
+// ---------------------------------------------
+const GIFTS = [
+    "Luxury Oud Gift Set",
+    "Mystical Gift Set",
+    "Women's Perfume Box",
+    "Gentleman's Desire Set",
+    "Amber & Vanilla Duo",
+    "Royal Arabian Set",
+    "Home Perfume Experience",
+    "Floral Scent Box",
+].map((name, i) => ({
+    id: `gift-${i + 1}`,
+    name,
+    brand: "ESSENCE",
+    category: "gifts",
+    price: `₦${randomPrice().toLocaleString()}`,
+    image: `/src/assets/Images/essentials/gifts/${i + 1}.jpg`,
+    description: `A beautifully packaged gift set featuring ${name}.`,
+    itemsIncluded: i % 2 === 0 ? "4 pieces" : "3 pieces",
+}));
 
-// Gift Sets
-for (let i = 1; i <= 10; i++) {
-    ESSENTIAL_CATEGORIES[5].products.push(createProduct(
-        i, ESSENTIAL_CATEGORIES[5], 
-        `The Grand Collection ${i}`, 
-        'itemsIncluded', 
-        i % 2 === 0 ? '4 pieces' : '3 pieces'
-    ));
-}
+// ---------------------------------------------
+// 9. EXPORT ALL PRODUCTS
+// ---------------------------------------------
+export const ESSENTIAL_PRODUCTS = [
+    ...OILS,
+    ...DIFFUSERS,
+    ...SPRAYS,
+    ...SOAPS,
+    ...CANDLES,
+    ...GIFTS,
+];
 
-export default ESSENTIAL_CATEGORIES;
+export default ESSENTIAL_PRODUCTS;

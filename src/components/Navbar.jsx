@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { ESSENTIAL_CATEGORIES } from '../data/essentialsData.js'
 
-export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSection}) {
+export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSection, onNavigate}) {
   const [showEssentials, setShowEssentials] = useState(false);
-  
+  const [desktopEssentials, setDesktopEssentials] = useState(false);
+
 
   const navRef = useRef(null);
 
@@ -13,6 +14,15 @@ export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSec
       if (isOpen && navRef.current && !navRef.current.contains(event.target)) {
         onClose();
       }
+
+      // Close desktop essentials
+    if (
+      desktopEssentials &&
+      navRef.current &&
+      !event.target.closest(".desktop-essentials")
+    ) {
+      setDesktopEssentials(false);
+    }
     }
 
    
@@ -22,7 +32,7 @@ export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSec
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, desktopEssentials, onClose]);
 
 
   const handleLinkClick = () => {
@@ -33,22 +43,25 @@ export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSec
     }
   };
 
-  const home = () => {
-    setCurrentSection("home")
-    handleLinkClick()
+  const go = (section) => {
+  setCurrentSection(section);
+
+  // Close mobile menu automatically
+  if (window.innerWidth < 768) {
+    onClose();
+    setShowEssentials(false);
   }
-  const brand = () => {
-    setCurrentSection("shop")
-    handleLinkClick()
+};
+
+const goEssential = (categoryId) => {
+  go("essentials");
+
+  if (categoryId && scrollToSection) {
+    setTimeout(() => scrollToSection(categoryId), 150);
   }
-  const male = () => {
-    setCurrentSection("male")
-    handleLinkClick()
-  }
-  const female = () => {
-    setCurrentSection("female")
-    handleLinkClick()
-  }
+};
+
+
   // ... existing handlers ...
 
 // This function now takes an optional categoryId for deep linking/scrolling
@@ -75,52 +88,65 @@ const essential = (categoryId) => {
       <div className="flex items-center justify-center p-0 md:px-6 md:py-4">
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-10 text-primary">
-          <a onClick={home} className="hover:text-accent transition">Home</a>
-          <a onClick={brand} className="hover:text-accent transition">Shop by Brand</a>
-          <a onClick={male} className="hover:text-accent transition">Male Section</a>
-          <a onClick={female} className="hover:text-accent transition">Female Section</a>
+          <a onClick={() => go("home")} className="hover:text-accent transition">Home</a>
+          <a onClick={() => go("shop")} className="hover:text-accent transition">Shop by Brand</a>
+          <a onClick={() => go("male")} className="hover:text-accent transition">Male Section</a>
+          <a onClick={() => go("female")} className="hover:text-accent transition">Female Section</a>
 
-          <div className="relative group">
-            <button  className="hover:text-accent transition">Body Essentials</button>
-            <div className="absolute hidden group-hover:flex flex-col top-full left-0 mt-2 bg-secondary shadow-lg rounded-lg p-4 gap-2 w-56 z-50">
+         <div className="relative desktop-essentials">
+  <button 
+    onClick={() => setDesktopEssentials(prev => !prev)} 
+    className="hover:text-accent transition"
+  >
+    Body Essentials
+  </button>
+
+          {desktopEssentials && (
+            <div className="absolute flex flex-col top-full left-0 mt-2 bg-secondary shadow-lg rounded-lg p-4 gap-2 w-56 z-50">
               {ESSENTIAL_CATEGORIES.map(category => (
-                    <a 
-                        key={category.id}
-                        onClick={() => essential(category.id)} // ⬅️ Triggers section change AND scroll
-                        className="text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap"
-                    >
-                        {category.icon} {category.name}
-                    </a>
-                ))}
+                <a
+                  key={category.id}
+                  onClick={() => {
+                    goEssential(category.id);
+                    scrollToSection(category.id); 
+                    setDesktopEssentials(false); // close after click
+                  }}
+                  className="cursor-pointer text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap"
+                >
+                  {category.icon} {category.name}
+                </a>
+              ))}
             </div>
-          </div>
-        </nav>
-      </div>
+          )}
+        </div>
+
+    </nav>
+  </div>
 
       {/* Mobile nav */}
       {isOpen && (
         <nav className="md:hidden flex flex-col gap-1 px-4 py-4 bg-secondary border-t border-muted">
           {/* 6. Add onClick={handleLinkClick} to ALL mobile links */}
           <a 
-            onClick={home}
+            onClick={() => go("home")}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Home
           </a>
           <a 
-            onClick={brand}
+            onClick={() => go("shop")}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Shop by Brand
           </a>
           <a 
-            onClick={male}
+            onClick={() => go("male")}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Male Section
           </a>
           <a 
-            onClick={female}
+            onClick={() => go("female")}
             className="px-4 py-3 rounded-lg text-primary hover:bg-cream hover:text-accent transition-all duration-200 font-medium cursor-pointer"
           >
             Female Section

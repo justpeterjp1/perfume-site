@@ -14,7 +14,7 @@ import Essentials from './components/Essentials';
 import Footer from './components/Footer';
 
 import featuredProducts from './data/featuredProducts'
-
+import { ESSENTIAL_PRODUCTS } from './data/essentialsData';
 function App() {
 
   const essentialSectionRefs = useRef({}); 
@@ -48,7 +48,8 @@ function App() {
   };
   // Adding to cart
   const handleAddToCart = (productId, size) => {
-    const product = featuredProducts.find(p => p.id === productId);
+     const allProducts = [...featuredProducts, ...ESSENTIAL_PRODUCTS];
+  const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
     setCartItems(prevItems => {
@@ -77,12 +78,27 @@ function App() {
     setShowToast(true);
   };
 
-  const handleQuickAdd = (productId) => {
-    const product = featuredProducts.find(p => p.id === productId);
-    if (!product) return;
+ const handleQuickAdd = (product) => {
+    console.log('Adding to cart:', product);
 
-    handleAddToCart(productId, product.sizes[0]);
-  };
+    // 1. Basic validation
+    if (!product || !product.id) {
+        console.error('Invalid product:', product);
+        return;
+    }
+
+    // 2. Optional: Ensure price exists and is a valid number
+    if (!product.price) {
+        console.warn('Product has no price, defaulting to 0:', product);
+    }
+
+    // 3. Handle size or variant if available
+    const size = product.sizes && product.sizes.length > 0 ? product.sizes[0] : null;
+
+    // 4. Call the actual cart handler
+    handleAddToCart(product.id, size);
+};
+
 
 
   const handleUpdateQuantity = (itemId, newQuantity) => {
@@ -167,6 +183,7 @@ function App() {
         onClose={() => setIsMenuOpen(!isMenuOpen)}
         setCurrentSection={setCurrentSection}
         scrollToSection={scrollToSection}
+        onNavigate={handleNavigate}
       />
       <main>
         {renderSection()}

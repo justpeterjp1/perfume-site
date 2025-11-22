@@ -1,13 +1,27 @@
 import { useState } from 'react';
 import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
-
+import BestOffers from './BestOffers';
+import NewArrivals from './NewArrivals';
 
 export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate }) {
 
     return (
         <div>
             <HeroSection />
+             {/* ⭐ NEW ARRIVALS */}
+      <NewArrivals 
+        products={featuredProducts} 
+        onCardClick={onCardClick}
+        onQuickAdd={onQuickAdd}
+      />
+
+      {/* ⭐ BEST OFFERS */}
+      <BestOffers 
+        products={featuredProducts} 
+        onCardClick={onCardClick}
+        onQuickAdd={onQuickAdd}
+      />
             <section className="bg-rosegold/10 container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="mb-4 text-2xl font-bold">Featured Collection</h2>

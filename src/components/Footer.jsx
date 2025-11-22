@@ -1,7 +1,7 @@
 
 import logo from '../assets/perfume-logo.jpg'
-import { Facebook, Instagram, Twitter } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { Instagram, Facebook } from 'lucide-react';
+import { FaWhatsapp, FaSnapchat } from 'react-icons/fa';
 
 
 const Footer = () => {
@@ -42,16 +42,16 @@ const Footer = () => {
                     <div>
                         <h4 className="uppercase tracking-wider text-sm mb-4">Follow Us</h4>
                         <div className="flex gap-4 mb-6">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
+                            <a href="https://www.instagram.com/lollys_hub?igsh=azdtYnlydjR1MnQ3" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
                                 <Instagram className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
+                            <a href="https://www.facebook.com/share/1AGnndxELH/?mibextid=wwXIfr" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
-                                <Twitter className="w-5 h-5" />
+                            <a href="https://snapchat.com/t/5meGAMzM" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
+                                <FaSnapchat className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
+                            <a href="http://wa.me//+2347012624054" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
                                 <FaWhatsapp className="w-5 h-5" />
                             </a>
                         </div>
