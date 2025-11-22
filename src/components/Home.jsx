@@ -1,20 +1,31 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
 import BestOffers from './BestOffers';
 import NewArrivals from './NewArrivals';
 
-export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate }) {
+export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate,  }) {
+    const newArrivalsRef = useRef(null);
 
+  const scrollToNewArrivals = () => {
+    if (newArrivalsRef.current) {
+      newArrivalsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  
     return (
         <div>
-            <HeroSection />
+            <HeroSection
+           onShopNewArrivals={scrollToNewArrivals}
+            />
+             <section ref={newArrivalsRef}>
              {/* ⭐ NEW ARRIVALS */}
-      <NewArrivals 
-        products={featuredProducts} 
-        onCardClick={onCardClick}
-        onQuickAdd={onQuickAdd}
-      />
+          <NewArrivals 
+            products={featuredProducts || []}
+            onCardClick={onCardClick}
+            onQuickAdd={onQuickAdd}
+          />
+             </section>
 
       {/* ⭐ BEST OFFERS */}
       <BestOffers 

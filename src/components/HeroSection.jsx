@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroImage from '../assets/Images/perfume-h.jpg'
 
-const HeroSection = () => {
+const HeroSection = ({onShopNewArrivals}) => {
   return (
     <section className="relative h-[500px] md:h-[600px] overflow-hidden">
   <div className="absolute inset-0">
@@ -28,7 +28,7 @@ const HeroSection = () => {
         Discover our curated collection of the world's finest fragrances
       </p>
 
-      <button className="bg-accent hover:bg-copper text-white px-8 py-3 rounded-full transition-colors">
+      <button onClick={onShopNewArrivals} className="bg-accent hover:bg-copper text-white px-8 py-3 rounded-full transition-colors">
         Shop New Arrivals
       </button>
     </div>

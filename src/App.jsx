@@ -12,11 +12,12 @@ import MaleSection from './components/MaleSection';
 import FemaleSection from './components/FemaleSection';
 import Essentials from './components/Essentials';
 import Footer from './components/Footer';
+import ProductCard from './components/ProductCard'; // ✅ ADD THIS IMPORT
 
 import featuredProducts from './data/featuredProducts'
 import { ESSENTIAL_PRODUCTS } from './data/essentialsData';
-function App() {
 
+function App() {
   const essentialSectionRefs = useRef({}); 
   const scrollToSection = (id) => {
     const element = essentialSectionRefs.current[id];
@@ -37,19 +38,50 @@ function App() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
+  // ✅ FIXED: Simplified search handler
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+    if (!query.trim()) {
+      setSearchResults([]);
+      setCurrentSection('home'); // Go back to home when search is cleared
+      return;
+    }
+
+    const lowerQuery = query.toLowerCase();
+
+    // Combine all products
+    const allProducts = [...featuredProducts, ...ESSENTIAL_PRODUCTS];
+
+    const results = allProducts.filter(p => {
+      return (
+        p.name?.toLowerCase().includes(lowerQuery) ||
+        p.description?.toLowerCase().includes(lowerQuery) ||
+        p.brand?.toLowerCase().includes(lowerQuery) ||
+        (p.notes && Array.isArray(p.notes) && p.notes.some(note => note.toLowerCase().includes(lowerQuery)))
+      );
+    });
+
+    setSearchResults(results);
+    setCurrentSection("search"); 
+  };
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  // Opening individual project modal
+  // Opening individual product modal
   const handleCardClick = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
+
   // Adding to cart
   const handleAddToCart = (productId, size) => {
-     const allProducts = [...featuredProducts, ...ESSENTIAL_PRODUCTS];
-  const product = allProducts.find(p => p.id === productId);
+    const allProducts = [...featuredProducts, ...ESSENTIAL_PRODUCTS];
+    const product = allProducts.find(p => p.id === productId);
+    
     if (!product) return;
 
     setCartItems(prevItems => {
@@ -78,28 +110,21 @@ function App() {
     setShowToast(true);
   };
 
- const handleQuickAdd = (product) => {
+  const handleQuickAdd = (product) => {
     console.log('Adding to cart:', product);
 
-    // 1. Basic validation
     if (!product || !product.id) {
-        console.error('Invalid product:', product);
-        return;
+      console.error('Invalid product:', product);
+      return;
     }
 
-    // 2. Optional: Ensure price exists and is a valid number
     if (!product.price) {
-        console.warn('Product has no price, defaulting to 0:', product);
+      console.warn('Product has no price, defaulting to 0:', product);
     }
 
-    // 3. Handle size or variant if available
     const size = product.sizes && product.sizes.length > 0 ? product.sizes[0] : null;
-
-    // 4. Call the actual cart handler
     handleAddToCart(product.id, size);
-};
-
-
+  };
 
   const handleUpdateQuantity = (itemId, newQuantity) => {
     if (newQuantity === 0) {
@@ -118,13 +143,66 @@ function App() {
     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
-   const handleNavigate = (section) => {
+  const handleNavigate = (section) => {
     setCurrentSection(section);
     setIsMenuOpen(false);
+    setSearchQuery(""); // ✅ Clear search when navigating
+    setSearchResults([]); // ✅ Clear results
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // ✅ FIXED: Search results as a section
   const renderSection = () => {
+    // Show search results if searching
+    if (currentSection === "search" && searchQuery.trim()) {
+      return (
+        <section className="container mx-auto px-4 py-16 min-h-screen">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              Search Results
+            </h2>
+            <p className="text-gray-600">
+              Found {searchResults.length} {searchResults.length === 1 ? 'product' : 'products'} for "{searchQuery}"
+            </p>
+          </div>
+
+          {searchResults.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {searchResults.map(product => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onCardClick={handleCardClick}
+                  onQuickAdd={handleQuickAdd}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">🔍</div>
+              <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+                No products found
+              </h3>
+              <p className="text-gray-500 mb-6">
+                Try searching with different keywords
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSearchResults([]);
+                  setCurrentSection("home");
+                }}
+                className="bg-[#D4AF37] text-white px-6 py-3 rounded-lg hover:bg-[#C5A028] transition-colors"
+              >
+                Back to Home
+              </button>
+            </div>
+          )}
+        </section>
+      );
+    }
+
+    // Regular sections
     switch (currentSection) {
       case 'home':
         return (
@@ -135,7 +213,7 @@ function App() {
             onQuickAdd={handleQuickAdd}
             onOpenQuiz={() => setIsQuizOpen(true)}
           />
-        )
+        );
       case "shop":
         return (
           <Brands
@@ -146,32 +224,42 @@ function App() {
       case "male":
         return (
           <MaleSection
-          onCardClick={handleCardClick}
+            onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
           />
-        )
+        );
       case "female":
         return (
           <FemaleSection
-          onCardClick={handleCardClick}
+            onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
           />
-        )
+        );
       case "essentials":
         return (
           <Essentials 
-          onCardClick={handleCardClick}
+            onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
           />
-        )
-
+        );
       default:
-        return <Home />;
+        return (
+          <Home
+            featuredProducts={featuredProducts}
+            onCardClick={handleCardClick}
+            onNavigate={handleNavigate}
+            onQuickAdd={handleQuickAdd}
+            onOpenQuiz={() => setIsQuizOpen(true)}
+          />
+        );
     }
-  }
+  };
+
   return (
     <>
       <Header
+        searchQuery={searchQuery} 
+        onSearch={handleSearch} // ✅ Pass correct handler
         toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
         isMenuOpen={isMenuOpen}
         cartCount={cartCount}
@@ -180,25 +268,28 @@ function App() {
 
       <Navbar
         isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(!isMenuOpen)}
+        onClose={() => setIsMenuOpen(false)}
         setCurrentSection={setCurrentSection}
         scrollToSection={scrollToSection}
         onNavigate={handleNavigate}
       />
+
       <main>
         {renderSection()}
       </main>
+
       <NewsLetter />
       <Footer />
+
       {/* Cart Drawer */}
       <CartModal
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
-
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
       />
+
       {/* Fragrance Quiz */}
       <FragranceQuiz
         isOpen={isQuizOpen}
@@ -207,6 +298,7 @@ function App() {
         onCardClick={handleCardClick}
         onQuickAdd={handleQuickAdd}
       />
+
       {/* Toast Notification */}
       <Toast
         message={toastMessage}
@@ -214,7 +306,7 @@ function App() {
         onClose={() => setShowToast(false)}
       />
     </>
-  )
+  );
 }
 
 export default App;

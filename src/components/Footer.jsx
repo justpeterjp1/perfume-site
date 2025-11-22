@@ -41,6 +41,15 @@ const Footer = () => {
                     {/* Social & Payment */}
                     <div>
                         <h4 className="uppercase tracking-wider text-sm mb-4">Follow Us</h4>
+                       <p className="text-sm  mb-4 leading-relaxed">
+                        Reach out to us on any of our socials to request a custom order or find a specific perfume brand you're looking for.
+                        </p>
+
+                        <p className="text-sm  mb-4 leading-relaxed">
+                        We're always ready to receive your orders and help you restock your favorite fragrances.
+                        </p>
+
+                        
                         <div className="flex gap-4 mb-6">
                             <a href="https://www.instagram.com/lollys_hub?igsh=azdtYnlydjR1MnQ3" className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent transition-colors flex items-center justify-center">
                                 <Instagram className="w-5 h-5" />
