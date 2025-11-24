@@ -3,7 +3,7 @@ import BRANDS from '../data/brands.js';
 import featuredProducts from '../data/featuredProducts.js';
 import ProductCard from './ProductCard.jsx';
 import BrandCard from './BrandCard.jsx';
-import AnimatedGrid from './AnimatedGrid.jsx';
+import { AnimatedGrid }from './AnimatedGrid.jsx';
 
 // Utility function to shuffle and pick a subset of array
 const getRandomSlice = (array, count) => {

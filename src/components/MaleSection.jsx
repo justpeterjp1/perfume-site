@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import ProductCard from './ProductCard';
 import featuredProducts from "../data/featuredProducts"; // The complete product list
-
+import { AnimatedGrid, FadeInOnView } from "./AnimatedGrid"
 // Define the available note filters for this section
 const MALE_NOTES = ['All', 'Woody', 'Musk', 'Spicy', 'Citrus', 'Amber', 'Aquatic', 'Leather'];
 

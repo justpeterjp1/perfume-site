@@ -20,15 +20,15 @@ import { ESSENTIAL_PRODUCTS } from './data/essentialsData';
 
 function App() {
   const essentialSectionRefs = useRef({}); 
-  const scrollToSection = (id) => {
-    const element = essentialSectionRefs.current[id];
-    
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   const scrollToEssentialSection = (id) => {
+    const section = essentialSectionRefs.current[id];
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      console.warn(`Attempted to scroll to section '${id}', but ref not found.`);
+      console.warn(`Section ${id} not found`);
     }
   };
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('home')
@@ -246,6 +246,7 @@ function App() {
           <Essentials 
             onCardClick={handleCardClick}
             onQuickAdd={handleQuickAdd}
+            sectionRefs={essentialSectionRefs}
           />
         );
       default:
@@ -276,7 +277,7 @@ function App() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         setCurrentSection={setCurrentSection}
-        scrollToSection={scrollToSection}
+        onScrollToSection={scrollToEssentialSection}
         onNavigate={handleNavigate}
       />
 

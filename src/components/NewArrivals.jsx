@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import AnimatedGrid from "./AnimatedGrid";
+import { AnimatedGrid } from "./AnimatedGrid";
 
 export default function NewArrivals({ products, onCardClick, onQuickAdd }) {
   const newArrivals = products.slice(-8); // last 6 = newest

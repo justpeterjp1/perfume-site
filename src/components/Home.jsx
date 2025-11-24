@@ -3,7 +3,7 @@ import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
 import BestOffers from './BestOffers';
 import NewArrivals from './NewArrivals';
-import AnimatedGrid from './AnimatedGrid';
+import { AnimatedGrid, FadeInOnView } from './AnimatedGrid';
 
 export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate,  }) {
     const newArrivalsRef = useRef(null);
@@ -16,9 +16,11 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
   
     return (
         <div>
+          <FadeInOnView>
             <HeroSection
            onShopNewArrivals={scrollToNewArrivals}
             />
+          </FadeInOnView>
              <section ref={newArrivalsRef}>
              {/* ⭐ NEW ARRIVALS */}
           <NewArrivals 
@@ -35,12 +37,14 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
         onQuickAdd={onQuickAdd}
       />
             <section className="bg-rosegold/10 container mx-auto px-4 py-16">
+        <FadeInOnView>
         <div className="text-center mb-12">
           <h2 className="mb-4 text-2xl font-bold">Featured Collection</h2>
           <p className="text-charcoal opacity-70 max-w-2xl mx-auto">
             Discover our handpicked selection of luxury fragrances from the world's most prestigious houses
           </p>
         </div>
+        </FadeInOnView>
 
         <AnimatedGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {featuredProducts.slice(0, 6).map((product) => (
@@ -55,6 +59,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
       </section>
           {/* Fragrance Quiz CTA */}
       <section className="bg-copper/20 py-16">
+      <FadeInOnView>
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto text-">
             <h2 className="text-gray text-3xl font-semibold mb-4">Find Your Perfect Scent</h2>
@@ -69,6 +74,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
             </button>
           </div>
         </div>
+      </FadeInOnView>
       </section>
 
       {/* Categories Preview */}
@@ -77,6 +83,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
           <h2 className="text-center mb-12 text-3xl font-semibold">Shop by Collection</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Male Section */}
+            <FadeInOnView>
             <div 
               onClick={() => onNavigate("male")}
               className="relative h-80 rounded-lg overflow-hidden group cursor-pointer"
@@ -92,9 +99,10 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
                 </div>
               </div>
             </div>
+            </FadeInOnView>
 
             {/* Female Section */}
-
+            <FadeInOnView>
             <div 
               onClick={() => onNavigate("female")}
               className="relative h-80 rounded-lg overflow-hidden group cursor-pointer"
@@ -110,12 +118,15 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
                 </div>
               </div>
             </div>
+            </FadeInOnView>
+
           </div>
         </div>
       </section>
            {/* Other Products Showcase */}
       <section className="bg-[--color-off-white] container mx-auto px-4 py-16 border-b">
         <h2 className="text-center mb-12 font-bold">Explore More</h2>
+        <FadeInOnView>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {[
             { label: "Perfume Oils", value: "perfume-oils" },
@@ -142,6 +153,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
             </button>
           ))}
         </div>
+        </FadeInOnView>
       </section>
     </div>
     )

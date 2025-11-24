@@ -2,7 +2,7 @@ import React from 'react';
 import { ESSENTIAL_CATEGORIES, ESSENTIAL_PRODUCTS } from '../data/essentialsData';
 import HorizontalScrollSection from './HorizontalScrollSection';
 
-export default function Essentials({ onCardClick, onQuickAdd }) {
+export default function Essentials({ onCardClick, onQuickAdd, sectionRefs }) {
 
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
@@ -42,7 +42,7 @@ export default function Essentials({ onCardClick, onQuickAdd }) {
                 {groupedProducts.map(category => (
                     <div
                         key={category.id}
-                        id={category.id}
+                        ref={(el) => (sectionRefs.current[category.id] = el)}
                         className="mb-16"
                     >
                         <HorizontalScrollSection

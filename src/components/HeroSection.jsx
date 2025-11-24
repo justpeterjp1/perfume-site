@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroImage from '../assets/Images/perfume-h.jpg'
+import HeroImage from '/Images/perfume-h.jpg'
 
 const HeroSection = ({onShopNewArrivals}) => {
   return (

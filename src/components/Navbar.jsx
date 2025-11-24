@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ESSENTIAL_CATEGORIES } from '../data/essentialsData.js'
 
-export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSection, onNavigate}) {
+export default function Navbar({ isOpen, onClose, setCurrentSection, onScrollToSection, onNavigate}) {
   const [showEssentials, setShowEssentials] = useState(false);
   const [desktopEssentials, setDesktopEssentials] = useState(false);
 
@@ -56,8 +56,8 @@ export default function Navbar({ isOpen, onClose, setCurrentSection, scrollToSec
 const goEssential = (categoryId) => {
   go("essentials");
 
-  if (categoryId && scrollToSection) {
-    setTimeout(() => scrollToSection(categoryId), 150);
+  if (categoryId && onScrollToSection) {
+    setTimeout(() => onScrollToSection(categoryId), 150);
   }
 };
 
@@ -71,10 +71,10 @@ const essential = (categoryId) => {
 
     handleLinkClick(); 
     //    (Delay ensures the main component has time to render)
-    if (categoryId && scrollToSection) {
+    if (categoryId && onScrollToSection) {
       
         setTimeout(() => {
-            scrollToSection(categoryId);
+            onScrollToSection(categoryId);
         }, 100); 
     }
 }
@@ -108,7 +108,7 @@ const essential = (categoryId) => {
                   key={category.id}
                   onClick={() => {
                     goEssential(category.id);
-                    scrollToSection(category.id); 
+                    onScrollToSection(category.id); 
                     setDesktopEssentials(false); // close after click
                   }}
                   className="cursor-pointer text-primary hover:text-accent hover:bg-cream/50 px-3 py-2 rounded-md transition whitespace-nowrap"

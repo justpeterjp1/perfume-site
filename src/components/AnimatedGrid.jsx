@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
  * - columns: Tailwind grid classes string (default: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4")
  * - gap: Tailwind gap class (default: "gap-6")
  */
-export default function AnimatedGrid({ children, columns = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4", gap = "gap-6" }) {
+export function AnimatedGrid({ children, columns = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4", gap = "gap-6" }) {
   // Container for staggered animation
   const container = {
     hidden: {},
@@ -43,6 +43,20 @@ export default function AnimatedGrid({ children, columns = "grid-cols-1 sm:grid-
       viewport={{ once: true, amount: 0.2 }}
     >
       {animatedChildren}
+    </motion.div>
+  );
+}
+
+
+export function FadeInOnView({ children, delay = 0 }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+    >
+      {children}
     </motion.div>
   );
 }
