@@ -13,39 +13,31 @@ import { motion } from "framer-motion";
  * - gap: Tailwind gap class (default: "gap-6")
  */
 export function AnimatedGrid({ children, columns = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4", gap = "gap-6" }) {
-  // Container for staggered animation
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.08, // small stagger
-      },
-    },
-  };
-
-  // Each item animation
-  const item = {
+  
+  // Each child animation
+  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
-  // Wrap children in motion.divs
-  const animatedChildren = React.Children.map(children, (child) => (
-    <motion.div variants={item}>{child}</motion.div>
-  ));
-
   return (
-    <motion.div
-      className={`grid ${columns} ${gap}`}
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {animatedChildren}
-    </motion.div>
+    <div className={`grid ${columns} ${gap}`}>
+      {React.Children.map(children, (child, index) => (
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: index * 0.05 }} // stagger effect
+          style={{ willChange: "opacity, transform" }} // hint browser for smoother animation
+        >
+          {child}
+        </motion.div>
+      ))}
+    </div>
   );
 }
+
 
 
 export function FadeInOnView({ children, delay = 0 }) {
