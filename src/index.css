@@ -19,3 +19,7 @@ button, a {
   background: url(/src/assets/Images/perfume-1.jpg) center / cover no-repeat;
 }
 
+.oldPrice {
+  text-decoration: line-through;
+}
+

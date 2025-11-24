@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import ProductCard from './ProductCard';
 import BestOffers from './BestOffers';
 import NewArrivals from './NewArrivals';
+import AnimatedGrid from './AnimatedGrid';
 
 export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpenQuiz, onNavigate,  }) {
     const newArrivalsRef = useRef(null);
@@ -41,7 +42,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <AnimatedGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {featuredProducts.slice(0, 6).map((product) => (
             <ProductCard
               key={product.id}
@@ -50,7 +51,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
               onQuickAdd={onQuickAdd}
             />
           ))}
-        </div>
+        </AnimatedGrid>
       </section>
           {/* Fragrance Quiz CTA */}
       <section className="bg-copper/20 py-16">
@@ -93,6 +94,7 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
             </div>
 
             {/* Female Section */}
+
             <div 
               onClick={() => onNavigate("female")}
               className="relative h-80 rounded-lg overflow-hidden group cursor-pointer"
@@ -141,7 +143,6 @@ export default function Home( { featuredProducts, onCardClick, onQuickAdd, onOpe
           ))}
         </div>
       </section>
-
-        </div>
+    </div>
     )
 }

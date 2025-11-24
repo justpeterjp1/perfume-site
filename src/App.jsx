@@ -13,6 +13,7 @@ import FemaleSection from './components/FemaleSection';
 import Essentials from './components/Essentials';
 import Footer from './components/Footer';
 import ProductCard from './components/ProductCard'; // ✅ ADD THIS IMPORT
+import ProductDetailModal from './components/ProductDetailModal';
 
 import featuredProducts from './data/featuredProducts'
 import { ESSENTIAL_PRODUCTS } from './data/essentialsData';
@@ -146,12 +147,17 @@ function App() {
   const handleNavigate = (section) => {
     setCurrentSection(section);
     setIsMenuOpen(false);
-    setSearchQuery(""); // ✅ Clear search when navigating
-    setSearchResults([]); // ✅ Clear results
+    setSearchQuery(""); // Clear search when navigating
+    setSearchResults([]); // Clear results
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // ✅ FIXED: Search results as a section
+  const handleAddToCartFromModal = (product) => {
+    handleQuickAdd(product);
+    setIsModalOpen(false);
+  };
+
+  //  Search results as a section
   const renderSection = () => {
     // Show search results if searching
     if (currentSection === "search" && searchQuery.trim()) {
@@ -277,6 +283,13 @@ function App() {
       <main>
         {renderSection()}
       </main>
+       {/* Product Detail Modal */}
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddToCart={handleAddToCartFromModal}
+      />
 
       <NewsLetter />
       <Footer />

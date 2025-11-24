@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductCard from './ProductCard'; // Assuming you reuse ProductCard
-
+import AnimatedGrid from './AnimatedGrid';
 const HorizontalScrollSection = ({ title, products, onCardClick, onQuickAdd }) => {
     const scrollRef = useRef(null);
     
@@ -41,7 +41,7 @@ const HorizontalScrollSection = ({ title, products, onCardClick, onQuickAdd }) =
                 </div>
             </div>
 
-            <div
+            <AnimatedGrid
                 ref={scrollRef}
                 // Key classes for horizontal scroll: flex gap-6 overflow-x-auto
                 className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
@@ -61,7 +61,7 @@ const HorizontalScrollSection = ({ title, products, onCardClick, onQuickAdd }) =
                         />
                     </div>
                 ))}
-            </div>
+            </AnimatedGrid>
         </section>
     );
 };

@@ -36,14 +36,14 @@ const BRANDS = [
   },
   { 
     name: "Giorgio Armani", 
-    slug: "armani", 
+    slug: "Giorgio Armani", 
     image: "src/assets/Images/armani1.jpg",
     description: "Elegant, minimalist, and beautifully crafted Italian fragrances.",
     productCount: 15 
   },
   { 
     name: "Versace", 
-    slug: "versace", 
+    slug: "Versace", 
     image: "src/assets/Images/versace1.jpg",
     description: "Loud, vibrant, and luxurious perfumes inspired by Greek mythology and excess.",
     productCount: 10 
@@ -57,17 +57,10 @@ const BRANDS = [
   },
   { 
     name: "Tom Ford", 
-    slug: "tom-ford", 
+    slug: "Tom Ford", 
     image: "src/assets/Images/tom-ford1.jpg",
     description: "Decadent, signature scents known for their rich, unconventional blends.",
     productCount: 28 
-  },
-  { 
-    name: "Paco Rabanne", 
-    slug: "paco", 
-    image: "src/assets/Images/paco-rabanne1.jpg",
-    description: "Futuristic and bold scents, including popular long-lasting bestsellers.",
-    productCount: 17 
   },
   { 
     name: "Calvin Klein", 
@@ -99,22 +92,22 @@ const BRANDS = [
   },
   { 
     name: "Lattafa", 
-    slug: "lattafa", 
+    slug: "Lattafa", 
     image: "src/assets/Images/lattafa1.jpg",
     description: "High-quality Arabian perfumes featuring deep, complex, and luxurious blends.",
     productCount: 30 
   },
   { 
-    name: "Initio", 
-    slug: "initio", 
+    name: "Paco rabanne", 
+    slug: "Paco rabanne", 
     image: "src/assets/Images/louis-v1.jpg",
     description: "Focused on the power of scent and its therapeutic, sensory effects.",
     productCount: 9 
   },
   { 
-    name: "Maison Francis Kurkdjian", 
-    slug: "mfk", 
-    image: "src/assets/Images/9pm-1.jpg",
+    name: "Creed", 
+    slug: "Creed", 
+    image: "src/assets/Images/creed2.jpg",
     description: "Haute perfumery known for its clean, pure, and luminous scent structures.",
     productCount: 16 
   },

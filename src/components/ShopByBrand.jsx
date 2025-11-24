@@ -1,46 +1,41 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import BRANDS from '../data/brands.js';
-import featuredProducts from '../data/featuredProducts.js'
+import featuredProducts from '../data/featuredProducts.js';
 import ProductCard from './ProductCard.jsx';
-import BrandCard from './BrandCard.jsx'; 
+import BrandCard from './BrandCard.jsx';
+import AnimatedGrid from './AnimatedGrid.jsx';
 
-// 1. DEFINE UTILITY FUNCTION OUTSIDE OR INSIDE, BUT BEFORE HOOKS
+// Utility function to shuffle and pick a subset of array
 const getRandomSlice = (array, count) => {
-  // 1. Create a shallow copy of the array to avoid modifying the original data source.
-  const shuffled = [...array]; 
-
-
+  const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-
-  // 3. Slice the array to get the desired number of items.
   return shuffled.slice(0, count);
 };
 
-export default function ShopByBrand({onCardClick, onQuickAdd}) {
-  // 2. ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
+export default function ShopByBrand({ onCardClick, onQuickAdd }) {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeBrand, setActiveBrand] = useState(null);
 
-  // Hook 1: useEffect for data fetching
+  // Simulate fetching brands
   useEffect(() => {
-    // Simulate API call delay
     setTimeout(() => {
-      setBrands(BRANDS); 
+      setBrands(BRANDS);
       setLoading(false);
-    }, 1000);
-  }, []); 
+    }, 500); // slightly faster
+  }, []);
 
-  // Hook 2: useMemo for random product selection (Runs only on first render)
-  const randomFeaturedProducts = useMemo(() => {
-    // This call is now safe because it executes every time, even if 'loading' is true.
+  // Compute displayed products: filter by brand or random
+  const displayedProducts = useMemo(() => {
+    if (activeBrand) {
+      return featuredProducts.filter(p => p.brand === activeBrand);
+    }
     return getRandomSlice(featuredProducts, 6);
-  }, [featuredProducts]);
+  }, [activeBrand]);
 
-
-  // 3. CONDITIONAL EARLY RETURN MUST COME AFTER ALL HOOKS
   if (loading) {
     return (
       <div className="text-center py-10">
@@ -49,7 +44,6 @@ export default function ShopByBrand({onCardClick, onQuickAdd}) {
     );
   }
 
-  // 4. RETURN THE MAIN CONTENT WHEN NOT LOADING
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-center mb-10 text-[#D4AF37]">
@@ -59,13 +53,31 @@ export default function ShopByBrand({onCardClick, onQuickAdd}) {
       {/* Brand Grid */}
       <div className="m-4 p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {brands.map((brand) => (
-          <BrandCard key={brand.id} brand={brand} />
+          <BrandCard
+            key={brand.id}
+            brand={brand}
+            onClick={() => setActiveBrand(brand.name)}
+            // Add highlight if this brand is selected
+            isActive={activeBrand === brand.name}
+          />
         ))}
       </div>
 
-      {/* Featured Products Grid (Uses the memoized random list) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {randomFeaturedProducts.map((product) => (
+      {/* Show All button */}
+      {activeBrand && (
+        <div className="text-center my-4">
+          <button
+            onClick={() => setActiveBrand(null)}
+            className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
+          >
+            Show All
+          </button>
+        </div>
+      )}
+
+      {/* Featured Products Grid */}
+      <AnimatedGrid key={activeBrand || 'all'} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {displayedProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -73,7 +85,7 @@ export default function ShopByBrand({onCardClick, onQuickAdd}) {
             onQuickAdd={onQuickAdd}
           />
         ))}
-      </div>
+      </AnimatedGrid>
     </div>
   );
 }

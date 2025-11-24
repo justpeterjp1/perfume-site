@@ -48,9 +48,16 @@ export default function ProductCard({ product, onCardClick, onQuickAdd }) {
                 <h3 className="text-[#2C2C2C] mb-2 line-clamp-1">
                     {product.name}
                 </h3>
+                <div className='flex gap-2'>
                 <p className="text-[#D4AF37] font-semibold">
                     {product.price}
                 </p>
+                        
+                <p className="oldPrice text-red-500 font-semibold">
+                    {product.oldPrice}
+                </p>
+
+                </div>
             </div>
         </div>
     );
