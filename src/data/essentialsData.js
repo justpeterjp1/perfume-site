@@ -38,7 +38,7 @@ const OILS = [
     brand: "ESSENCE",
     category: "oils",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/oils/${i + 1}.jpg`,
+    image: `/Images/essentials/oils/${i + 1}.jpg`,
     description: `${name} is a premium concentrated perfume oil with long-lasting projection.`,
     volume: i % 2 === 0 ? "10ml" : "15ml",
 }));
@@ -61,7 +61,7 @@ const DIFFUSERS = [
     brand: "ESSENCE",
     category: "diffusers",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/diffusers/${i + 1}.jpg`,
+    image: `/Images/essentials/diffusers/${i + 1}.jpg`,
     description: `A long-lasting home diffuser infused with ${name} fragrance.`,
     duration: i % 3 === 0 ? "90 Days" : "60 Days",
 }));
@@ -84,7 +84,7 @@ const SPRAYS = [
     brand: "ESSENCE",
     category: "sprays",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/sprays/${i + 1}.jpg`,
+    image: `/Images/essentials/sprays/${i + 1}.jpg`,
     description: `A refreshing body spray perfect for daily wear. Scent: ${name}.`,
     formula: i % 2 === 0 ? "Non-alcoholic" : "Quick-dry",
 }));
@@ -109,7 +109,7 @@ const SOAPS = [
     brand: "ESSENCE",
     category: "soaps",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/soaps/${i + 1}.jpg`,
+    image: `/Images/essentials/soaps/${i + 1}.jpg`,
     description: `A handcrafted luxury soap enriched with natural oils. Scent: ${name}.`,
     weight: i % 4 === 0 ? "200g" : "100g",
 }));
@@ -132,7 +132,7 @@ const CANDLES = [
     brand: "ESSENCE",
     category: "candles",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/candles/${i + 1}.jpg`,
+    image: `/Images/essentials/candles/${i + 1}.jpg`,
     description: `A premium handcrafted scented candle with notes of ${name}.`,
     burnTime: i % 3 === 0 ? "50 hours" : "30 hours",
 }));
@@ -155,7 +155,7 @@ const GIFTS = [
     brand: "ESSENCE",
     category: "gifts",
     price: `₦${randomPrice().toLocaleString()}`,
-    image: `/src/assets/Images/essentials/gifts/${i + 1}.jpg`,
+    image: `/Images/essentials/gifts/${i + 1}.jpg`,
     description: `A beautifully packaged gift set featuring ${name}.`,
     itemsIncluded: i % 2 === 0 ? "4 pieces" : "3 pieces",
 }));
