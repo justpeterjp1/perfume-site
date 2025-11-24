@@ -1,12 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+.faculty-glyphic-regular {
+  font-family: "Faculty Glyphic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 /* In your CSS */
 html {
   scroll-padding-top: 100px; /* Adjust based on header height */
 }
+body {
+  font-family: 'Inter', sans-serif; /* paragraph text */
+}
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', serif; /* headers */
+}
 button, a {
   cursor: pointer;
 }
