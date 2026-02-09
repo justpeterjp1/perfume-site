@@ -9,14 +9,14 @@ const BRANDS = [
   { 
     name: "Oud", 
     slug: "Oud", 
-    image: "src/assets/Images/lattafa1.jpg", // Assuming placeholder image
+    image: "src/assets/Images/lattafa1.jpg", 
     description: "A selection of rich, complex fragrances built around the noble Oud note.",
     productCount: 18 
   },
   { 
     name: "Asad", 
     slug: "Asad", 
-    image: "src/assets/Images/lattafa2.jpg", // Assuming placeholder image
+    image: "src/assets/Images/lattafa2.jpg", 
     description: "Bold, masculine scents known for their intense sillage and longevity.",
     productCount: 12 
   },
@@ -31,7 +31,7 @@ const BRANDS = [
     name: "YSL", 
     slug: "ysl", 
     image: "src/assets/Images/9pm-1.jpg",
-    description: "Daring and provocative perfumes that blend traditional florals with modern intensity.",
+    description: "Daring and provocative perfume that blend traditional florals with modern intensity.",
     productCount: 20 
   },
   { 
@@ -52,7 +52,7 @@ const BRANDS = [
     name: "Gucci", 
     slug: "gucci", 
     image: "src/assets/Images/gucci1.jpg",
-    description: "Eclectic and contemporary fragrances that reflect the brand's unique aesthetic.",
+    description: "Eclectic and contemporary fragrance that reflect the brand's unique aesthetic.",
     productCount: 14 
   },
   { 
